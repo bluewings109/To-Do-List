@@ -1,7 +1,12 @@
+function onFailGettingWeather(){
+  const weatherDiv = document.body.querySelector("#weather");
+  weatherDiv.innerText=`날씨를 조회할 수 없습니다 🥲`;
+}
+
 function onPassGeo(response){
   const lat = response.coords.latitude;
   const lon = response.coords.longitude;
-  const API_KEY = "5ff61b73210c737f380d8530facc5a73";
+  const API_KEY = "YOUR_API_KEYS";
 
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`;
 
@@ -12,12 +17,8 @@ function onPassGeo(response){
 
     const weatherDiv = document.body.querySelector("#weather");
     weatherDiv.innerText=`${locationName} / ${weather} /${temperature}℃`
-  }).catch(() => alert("날씨 조회 실패"));
+  }).catch(() => onFailGettingWeather);
 
 }
 
-function onFailGeo(){
-  alert("위치 조회에 실패했습니다.");
-}
-
-navigator.geolocation.getCurrentPosition(onPassGeo, onFailGeo);
+navigator.geolocation.getCurrentPosition(onPassGeo, onFailGettingWeather);
