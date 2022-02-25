@@ -6,7 +6,7 @@ function onFailGettingWeather(){
 function onPassGeo(response){
   const lat = response.coords.latitude;
   const lon = response.coords.longitude;
-  const API_KEY = "YOUR_API_KEY";
+  const API_KEY = "5ff61b73210c737f380d8530facc5a73";
 
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`;
 
